@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+    <div class="chart-time-line">
+    </div>
+
+    <script type="module">
+      import {mkTimeline} from './timeline.js'
+
+      // UI용 임시 데이터 세팅 함수(개발 시 완전 삭제)
+      const dataReturn = (max, min) => {
+        let arr = Array(24).fill(0).map(m => Array(3).fill(0).map(m=>m = (Math.floor(Math.random() * max) + min)));
+        return arr;
+      }
+
+      dataReturn(200,0)
+
+      const tm = document.querySelector('.chart-time-line');
+      const negChartArea = document.querySelector('.mixed-neg-chart');
+      const boxPlotArea = document.querySelector('.box-plot-chart');
+      let timeChart = {
+          data:[],
+          options: {
+            max: 31,
+            min: 1,
+            dir:'rev',
+            format:'d-*',
+            category: Array(5).fill(0).map((_, i) => i + 1),
+            shape: 'polygon(0% 0%, calc(100% - 30px) 0%, 100% 50%, calc(100% - 30px) 100%, 0% 100%)',
+            border: true,
+            headerBg: '#ccc',
+            headerCol: '#fff',
+            borderHdrCol :'#fff',
+            color:'#fff',
+            borderCol :'#ccc',
+            borderWidth :1,
+            borderStyle :'solid',
+            title: 'Project',
+            heights: 40,
+            cut: 10,
+            fontSize:10,
+            hdrFontSize:20,
+          }
+        }
+      
+        timeChart.data.push({
+          start:1,
+          end:2,
+          backgroundColor:'purple',
+          label:'ev8',
+          category:1
+        });
+
+        timeChart.data.push({
+          start:4,
+          end:8,
+          backgroundColor:'yellow',
+          label:'ev8',
+          color:'black',
+          category:1
+        });
+
+        timeChart.data.push({
+          start:1,
+          end:12,
+          backgroundColor:'green',
+          label:'ev8',
+          category:4
+        });
+
+
+
+      // timeChart.ev1={};
+      // timeChart.ev1.start=5;
+      // timeChart.ev1.end=24;
+      // timeChart.ev1.backgroundColor='purple';
+      // timeChart.ev1.label='ev8';
+      // timeChart.ev1.category=5;
+
+      // timeChart.ev2={};
+      // timeChart.ev2.start=12;
+      // timeChart.ev2.end=20;
+      // timeChart.ev2.backgroundColor='orange';
+      // timeChart.ev2.label='EVE';
+      // timeChart.ev2.category=1;
+
+      // timeChart.ev3={};
+      // timeChart.ev3.start=3;
+      // timeChart.ev3.end=10;
+      // timeChart.ev3.backgroundColor='blue';
+      // timeChart.ev3.label='EVE2';
+      // timeChart.ev3.category=1;
+
+      mkTimeline(timeChart, tm);
+
+    </script>
+</body>
+</html>
